@@ -16,7 +16,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
+    text-align: center;
   }
   #appContainer {
     width: 90%;
@@ -25,7 +26,6 @@
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 0 25px rgba(0,0,0,0.5);
-    text-align: center;
   }
   h1 {
     margin: 0 0 10px 0;
@@ -35,6 +35,26 @@
     font-size: 16px;
     line-height: 1.5;
   }
+  #instructions {
+    font-size: 14px;
+    color: #ccc;
+  }
+</style>
+</head>
+<body>
+  <div id="appContainer">
+    <h1>Cat AI - powered by Yuro</h1>
+    <p>Ask Cat AI about coding, scripting, and tech projects! Click the chat button to start chatting in fullscreen mode.</p>
+    <p id="instructions">It responds mostly to programming and scripting questions. Try asking for help with HTML, JavaScript, Lua, or any coding problem!</p>
+  </div>
+
+  <!-- Chatling AI fullscreen widget -->
+  <script>
+    window.chtlConfig = { chatbotId: "2126771186", display: "fullscreen" };
+  </script>
+  <script async data-id="2126771186" id="chtl-script" data-display="fullscreen" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+</body>
+</html>  }
   #instructions {
     font-size: 14px;
     color: #ccc;
