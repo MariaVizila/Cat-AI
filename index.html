@@ -7,7 +7,7 @@
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #1e1e2f, #2c2c44);
     color: #fff;
     display: flex;
@@ -27,63 +27,34 @@
     padding: 30px;
     box-shadow: 0 0 40px rgba(0,0,0,0.6);
     margin-bottom: 30px;
-    position: relative;
-    overflow: hidden;
   }
 
-  h1 {
-    margin: 0 0 15px 0;
-    font-size: 2em;
-    letter-spacing: 1px;
-  }
+  h1 { margin: 0 0 15px 0; font-size: 2em; }
+  p { margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; }
+  #instructions { font-size: 14px; color: #ccc; margin-bottom: 20px; }
 
-  p {
-    margin: 0 0 20px 0;
-    font-size: 16px;
-    line-height: 1.6;
-  }
-
-  #instructions {
-    font-size: 14px;
-    color: #ccc;
-    margin-bottom: 20px;
-  }
-
-  /* Loader styles */
+  /* Simple neon loader */
   #loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 500px;
-  }
-
-  .dot {
-    height: 15px;
-    width: 15px;
-    margin: 0 5px;
-    background: #61dafb;
+    border: 10px solid #2c2c44;      /* background of the spinner */
+    border-top: 10px solid #00e0ff;   /* neon cyan color */
     border-radius: 50%;
-    display: inline-block;
-    animation: bounce 1.2s infinite ease-in-out;
+    width: 120px;
+    height: 120px;
+    animation: spin 1.8s linear infinite;
+    margin: 40px auto;
   }
 
-  .dot:nth-child(2) { animation-delay: 0.2s; }
-  .dot:nth-child(3) { animation-delay: 0.4s; }
-
-  @keyframes bounce {
-    0%, 80%, 100% { transform: scale(0); }
-    40% { transform: scale(1); }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 
-  /* Chat container hidden until loaded */
   #chtl-inline-bot {
     width: 100%;
-    height: 500px;
+    height: 600px;
     border-radius: 15px;
     overflow: hidden;
-    display: none;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+    display: none; /* hidden until loader disappears */
   }
 </style>
 </head>
@@ -93,42 +64,44 @@
     <p>Ask Cat AI about coding, scripting, and tech projects! The chat is embedded below:</p>
     <p id="instructions">It responds mostly to programming and scripting questions. Try asking for help with HTML, JavaScript, Lua, or any coding problem!</p>
 
-    <!-- Loader -->
-    <div id="loader">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
+    <!-- Neon loader -->
+    <div id="loader"></div>
 
     <!-- Chatling AI inline widget -->
     <div id="chtl-inline-bot"></div>
+
+    <script>
+      window.chtlConfig = { chatbotId: "2126771186", display: "page_inline" };
+
+      const botContainer = document.getElementById("chtl-inline-bot");
+      const loader = document.getElementById("loader");
+
+      const script = document.createElement("script");
+      script.src = "https://chatling.ai/js/embed.js";
+      script.async = true;
+      script.dataset.id = "2126771186";
+      script.dataset.display = "page_inline";
+      script.id = "chtl-script";
+
+      // Minimum loader display time
+      const startTime = Date.now();
+      const minDuration = 3000; // 3 seconds
+
+      script.onload = () => {
+        const elapsed = Date.now() - startTime;
+        if (elapsed < minDuration) {
+          setTimeout(() => {
+            loader.style.display = "none";
+            botContainer.style.display = "block";
+          }, minDuration - elapsed);
+        } else {
+          loader.style.display = "none";
+          botContainer.style.display = "block";
+        }
+      }
+
+      document.body.appendChild(script);
+    </script>
   </div>
-
-  <script>
-    // Initialize Chatling AI
-    window.chtlConfig = { chatbotId: "2126771186", display: "page_inline" };
-
-    const botContainer = document.getElementById("chtl-inline-bot");
-    const loader = document.getElementById("loader");
-
-    // Function to show chat after small delay to simulate loading
-    function showChat() {
-      loader.style.display = "none";
-      botContainer.style.display = "block";
-      setTimeout(() => {
-        botContainer.style.opacity = "1";
-      }, 50);
-    }
-
-    // Load the Chatling script dynamically
-    const script = document.createElement("script");
-    script.src = "https://chatling.ai/js/embed.js";
-    script.async = true;
-    script.dataset.id = "2126771186";
-    script.dataset.display = "page_inline";
-    script.id = "chtl-script";
-    script.onload = showChat;
-    document.body.appendChild(script);
-  </script>
 </body>
- </html>
+</html>
