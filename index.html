@@ -1,107 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Cat AI - powered by Yuro</title>
-<style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #1e1e2f, #2c2c44);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    padding: 40px 20px;
-    text-align: center;
-  }
-
-  #appContainer {
-    width: 100%;
-    max-width: 800px;
-    background: #2a2a40;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 0 40px rgba(0,0,0,0.6);
-    margin-bottom: 30px;
-  }
-
-  h1 { margin: 0 0 15px 0; font-size: 2em; }
-  p { margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; }
-  #instructions { font-size: 14px; color: #ccc; margin-bottom: 20px; }
-
-  /* Simple neon loader */
-  #loader {
-    border: 10px solid #2c2c44;      /* background of the spinner */
-    border-top: 10px solid #00e0ff;   /* neon cyan color */
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 1.8s linear infinite;
-    margin: 40px auto;
-  }
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-  #chtl-inline-bot {
-    width: 100%;
-    height: 600px;
-    border-radius: 15px;
-    overflow: hidden;
-    display: none; /* hidden until loader disappears */
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cat-AI Chat</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #1e1e1e;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #ffffff;
+    }
+    .message-box {
+      text-align: center;
+      max-width: 600px;
+      padding: 40px;
+      border: 2px solid #ff4500;
+      border-radius: 15px;
+      background-color: #2c2c2c;
+      box-shadow: 0 0 20px rgba(255, 69, 0, 0.6);
+    }
+    .message-box h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ff4500;
+    }
+    .message-box p {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: #ffffff;
+    }
+  </style>
 </head>
 <body>
-  <div id="appContainer">
-    <h1>Cat AI - powered by Yuro</h1>
-    <p>Ask Cat AI about coding, scripting, and tech projects! The chat is embedded below:</p>
-    <p id="instructions">It responds mostly to programming and scripting questions. Try asking for help with HTML, JavaScript, Lua, or any coding problem!</p>
-
-    <!-- Neon loader -->
-    <div id="loader"></div>
-
-    <!-- Chatling AI inline widget -->
-    <div id="chtl-inline-bot"></div>
-
-    <script>
-      window.chtlConfig = { chatbotId: "2126771186", display: "page_inline" };
-
-      const botContainer = document.getElementById("chtl-inline-bot");
-      const loader = document.getElementById("loader");
-
-      const script = document.createElement("script");
-      script.src = "https://chatling.ai/js/embed.js";
-      script.async = true;
-      script.dataset.id = "2126771186";
-      script.dataset.display = "page_inline";
-      script.id = "chtl-script";
-
-      // Minimum loader display time
-      const startTime = Date.now();
-      const minDuration = 3000; // 3 seconds
-
-      script.onload = () => {
-        const elapsed = Date.now() - startTime;
-        if (elapsed < minDuration) {
-          setTimeout(() => {
-            loader.style.display = "none";
-            botContainer.style.display = "block";
-          }, minDuration - elapsed);
-        } else {
-          loader.style.display = "none";
-          botContainer.style.display = "block";
-        }
-      }
-
-      document.body.appendChild(script);
-    </script>
+  <div class="message-box">
+    <h1>Chat Temporarily Unavailable</h1>
+    <p>The Cat-AI chat service is currently down until further notice. Estimated availability: next month. Thank you for your patience.</p>
   </div>
 </body>
 </html>
